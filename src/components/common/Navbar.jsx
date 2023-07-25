@@ -2,7 +2,7 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 
-const Menu = ({usuarioLogueado, setUsuarioLogueado}) => {
+const Navbar = ({usuarioLogueado, setUsuarioLogueado}) => {
 const navegacion = useNavigate();
 
   const logout = ()=>{
@@ -34,4 +34,4 @@ const navegacion = useNavigate();
   );
 };
 
-export default Menu;
+export default Navbar;

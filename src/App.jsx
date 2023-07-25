@@ -2,7 +2,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Error404 from "./components/views/Error404";
-import Menu from "./components/common/Menu";
+import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import Inicio from "./components/views/Inicio";
 import Registro from "./components/views/Registro";
