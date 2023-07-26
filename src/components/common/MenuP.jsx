@@ -2,7 +2,7 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import {Link, NavLink, useNavigate} from 'react-router-dom';
 
-const Navbar = ({usuarioLogueado, setUsuarioLogueado}) => {
+const MenuP = ({usuarioLogueado, setUsuarioLogueado}) => {
 const navegacion = useNavigate();
 
   const logout = ()=>{
@@ -11,9 +11,24 @@ const navegacion = useNavigate();
     navegacion('/');
   }
   return (
-    <Navbar bg="danger" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to='/'>Nuestros platos</Navbar.Brand>
+        <Navbar bg="dark" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand as={Link} to='/'>
+            <img
+              alt=""
+              src="public/lampara.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              size="lg"
+              
+            />{' '}
+            Menú Aladden
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -34,4 +49,4 @@ const navegacion = useNavigate();
   );
 };
 
-export default Navbar;
+export default MenuP;

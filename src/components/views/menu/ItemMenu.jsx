@@ -2,10 +2,9 @@ import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { consultaBorrarMenu, consultaListaMenu } from "../../helpers/queries";
 import { Link } from "react-router-dom";
-import Menu from "../../common/Navbar";
+import MenuP from "../../common/MenuP";
 
-
-const ItemReceta = ({menu,setMenu}) => {
+const ItemMenu = ({menu,setMenu}) => {
 
   const borrarMenu = ()=>{
     Swal.fire({
@@ -24,7 +23,7 @@ const ItemReceta = ({menu,setMenu}) => {
           console.log(respuesta);
           if(respuesta.status === 200){
             Swal.fire(
-              'RMenú eliminado',
+              'Menú eliminado',
               `El ${menu.nombreMenu} fue eliminado correctamente`,
               'success'
             );
@@ -45,10 +44,10 @@ const ItemReceta = ({menu,setMenu}) => {
 
    return (
     <tr>
-      {/* <td>{props.receta._id}</td> */}
+      
       <td>{menu.id}</td>
       <td>{menu.nombreMenu}</td>
-      <td>${menu.precio}</td>
+      <td>{menu.precio}</td>
       <td>{menu.imagen}</td>
       <td>{menu.categoria}</td>
       <td>

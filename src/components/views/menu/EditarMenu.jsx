@@ -17,7 +17,7 @@ const EditarMenu = () => {
   const navegacion = useNavigate()
 
   useEffect(()=>{
-    consultaReceta(id).then((respuesta)=>{
+    consultaMenu(id).then((respuesta)=>{
       if(respuesta){
         console.log('tengo que cargar el objeto en el formulario')
         console.log(respuesta);

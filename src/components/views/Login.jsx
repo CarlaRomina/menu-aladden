@@ -17,12 +17,12 @@ const Login = ({setUsuarioLogueado}) => {
         sessionStorage.setItem('usuario', JSON.stringify(respuesta));
         Swal.fire(
           'Bienvenido',
-          `${respuesta.nombreUsuario} iniciaste sesion correctamente`,
+          `${respuesta.nombreUsuario} iniciaste sesión correctamente`,
           'success'
         );
         setUsuarioLogueado(respuesta);
         //redireccionar
-        navegacion('/admin');
+        navegacion('/administrador');
       }else{
         Swal.fire(
           'Error',

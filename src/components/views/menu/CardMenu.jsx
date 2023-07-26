@@ -6,7 +6,7 @@ const CardMenu = () => {
       <Card>
         <Card.Img
           variant="top"
-          src=""
+          src="https://images.pexels.com/photos/4728230/pexels-photo-4728230.png?auto=compress&cs=tinysrgb&w=600"
         />
         <Card.Body>
           <Card.Title>Shawarma mixto</Card.Title>
