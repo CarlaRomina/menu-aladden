@@ -13,8 +13,26 @@
 [![ReactHookForm][ReactHookForm]][ReactHookForm-url]
 
 
+## Instrucciónes
+
+### Paso 1
+Debe instalar el siguiente entorno de trabajo
+
+[![NodeJS][NodeJS]][nodejs-url]
+
+### Paso 2
+Puede usar el siguiente comando para clonar este repositorio
+```bash
+git clone https://github.com/CarlaRomina/menu-aladden.git
+```
+### Paso 3
+Ejecute este comando para instalar las depencias
+```bash
+npm install 
+```
+
 <!-- MARKDOWN LINKS & IMAGES -->
-[NodeJS]:https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
+[NodeJS]:src/assets/icons/node.svg
 [nodejs-url]: https://nodejs.org/en
 
 [Baez Carla Romina]: https://github.com/CarlaRomina
