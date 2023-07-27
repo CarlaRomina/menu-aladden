@@ -31,6 +31,11 @@ Ejecute este comando para instalar las depencias
 npm install 
 ```
 
+## Referencias
+Referencias sacadas de 2 paginas que encontramos en un blog de 20 paginas de restaurantes de Wix.
+1. [Surya](https://www.suryarestaurants.com/)
+1. [Park restaurant](https://www.parkresto.com/)
+
 ## Autores
 
 ### Grupo 3
