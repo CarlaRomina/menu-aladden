@@ -46,7 +46,7 @@ npm install
 [Baez Carla Romina]: https://github.com/CarlaRomina
 [Choque	Leonel Ezequiel]: https://github.com/Leonel2099
 [Leiva	Marcelo Gabriel]: https://github.com/MarceloLeiva4
-[Zapata Gaviola	Samara Elena]: https://github.com/Ileriayo/markdown-badges
+[Zapata Gaviola	Samara Elena]: https://github.com
 
 [React]:https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=React&logoColor=%2361DAFB
 [React-url]: https://React.dev/
@@ -69,4 +69,4 @@ npm install
 [ReactHookForm]:https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=Reacthookform&logoColor=white
 [ReactHookForm-url]:https://react-hook-form.com/get-started
 
-[gitHub]:https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
+[gitHub]: src/assets/icons/icons8-github-32.svg
