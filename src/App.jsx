@@ -1,13 +1,18 @@
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Error404 from "./components/views/Error404";
-import Menu from "./components/common/Menu";
+// import Error404 from "./components/views/Error404";
 import Footer from "./components/common/Footer";
+import Login from "./components/views/Login";
 import Inicio from "./components/views/Inicio";
 import Registro from "./components/views/Registro";
+import DetalleMenu from "./components/views/DetalleMenu";
+import CrearMenu from "./components/views/menu/CrearMenu";
+import EditarMenu from "./components/views/menu/EditarMenu";
+import Administrador from "./components/views/Administrador";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import MenuP from "./components/common/MenuP";
 
 
 function App() {
@@ -16,8 +21,8 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Menu usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></Menu>
-      {/* <Routes>
+    <MenuP usuarioLogueado={usuarioLogueado} setUsuarioLogueado={setUsuarioLogueado}></MenuP>
+      <Routes>
         <Route exact path="/" element={<Inicio></Inicio>}></Route>
         <Route exact path="/registro" element={<Registro></Registro>}></Route>
         <Route exact path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}></Route>
@@ -26,8 +31,8 @@ function App() {
         <Route exact path="/administrador/editar-menu" element={<EditarMenu></EditarMenu>}></Route>
         <Route exact path="/administrador/crear-menu" element={<CrearMenu></CrearMenu>}></Route>
         
-        <Route path="*" element={<Error404></Error404>}></Route>
-      </Routes> */}
+        {/* <Route path="*" element={<Error404></Error404>}></Route> */}
+      </Routes>
       <Footer></Footer>
     </BrowserRouter>
   );
