@@ -31,6 +31,14 @@ Ejecute este comando para instalar las depencias
 npm install 
 ```
 
+## Autores
+
+### Grupo 3
+- Baez Carla Rominazequiel [![gitHub][gitHub]][Baez Carla Romina]
+- Choque Leonel Ezequiel [![gitHub][gitHub]][Choque	Leonel Ezequiel]
+- Leiva Marcelo Gabriel [![gitHub][gitHub]][Leiva	Marcelo Gabriel]
+- Zapata Gaviola Samara Elena [![gitHub][gitHub]][Zapata Gaviola Samara Elena]
+
 <!-- MARKDOWN LINKS & IMAGES -->
 [NodeJS]:src/assets/icons/node.svg
 [nodejs-url]: https://nodejs.org/en
