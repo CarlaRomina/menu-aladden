@@ -1,5 +1,5 @@
 const URLUsuario = import.meta.env.VITE_API_USUARIO;
-const URLMenu = import.meta.env.VITE_API_MENU;
+const URLMenu = import.meta.env.VITE_API_PRODUCTO;
 
 export const login = async(usuario)=>{
     try{
