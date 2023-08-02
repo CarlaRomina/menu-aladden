@@ -1,6 +1,15 @@
 import { Container, Row } from "react-bootstrap";
 import CardMenu from "./menu/CardMenu";
+import { useEffect, useState } from "react";
+import { consultaListaMenu } from "../helpers/queries";
+
 const Inicio = () => {
+  const [productos, setProductos] = useState([]);
+  useEffect(() => {
+    consultaListaMenu().then((respuesta) => {
+      setProductos(respuesta);
+    });
+  }, []);
   return (
     <section className="mainSection">
       <img
@@ -12,10 +21,9 @@ const Inicio = () => {
         <h1 className="display-4">Nuestros platos</h1>
         <hr />
         <Row>
-            <CardMenu></CardMenu>
-            <CardMenu></CardMenu>
-            <CardMenu></CardMenu>
-            <CardMenu></CardMenu>
+          {
+            productos.map((producto) => (<CardMenu key={producto._id} producto={producto}></CardMenu>))
+          }
         </Row>
       </Container>
     </section>
