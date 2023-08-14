@@ -7,12 +7,11 @@ import Login from "./components/views/Login";
 import Inicio from "./components/views/Inicio";
 import Registro from "./components/views/Registro";
 import DetalleMenu from "./components/views/DetalleMenu";
-import CrearMenu from "./components/views/menu/CrearMenu";
-import EditarMenu from "./components/views/menu/EditarMenu";
-import Administrador from "./components/views/Administrador";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import MenuP from "./components/common/MenuP";
+import RutasProtegidas from "./components/routes/RutasProtegidas";
+import RutasAdministrador from "./components/routes/RutasAdministrador";
 
 
 function App() {
@@ -27,10 +26,11 @@ function App() {
         <Route exact path="/registro" element={<Registro></Registro>}></Route>
         <Route exact path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}></Route>
         <Route exact path="/detalle/:id" element={<DetalleMenu></DetalleMenu>}></Route>
-        <Route exact path="/administrador" element={<Administrador></Administrador>}></Route>
-        <Route exact path="/administrador/editar-menu" element={<EditarMenu></EditarMenu>}></Route>
-        <Route exact path="/administrador/crear-menu" element={<CrearMenu></CrearMenu>}></Route>
-        
+        <Route exact path="/administrador/*" element={
+          <RutasProtegidas>
+            <RutasAdministrador/>
+          </RutasProtegidas>
+        }></Route>  
         {/* <Route path="*" element={<Error404></Error404>}></Route> */}
       </Routes>
       <Footer></Footer>
