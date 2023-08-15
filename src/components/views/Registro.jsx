@@ -1,5 +1,6 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { crearUsuario } from "../helpers/queries";
 
 const Registro = () => {
   const {
@@ -9,12 +10,25 @@ const Registro = () => {
     reset,
     watch,
   } = useForm();
+  const onSubmit = (data) =>{
+    const { email, password} = data
+    data.perfil = "usuario";
+    data.estado = "activo";
+    crearUsuario(data).then((respuesta) => {
+      if(respuesta.status === 201){
+        localStorage.setItem("usuarioInicioSesion", JSON.stringify(respuesta));
+        reset();
+      }else {
+        Swal.fire(`Ocurrió un error`, `Intente nuevamente más tarde`, `error`);
+      }
+    });
+  };
   return (
     <div className="mt-5 mainSection">
       <h3 className="text-center">Registro</h3>
       <div className="row justify-content-center">
         <div className="col-12 col-sm-8 col-md-6 col-xl-4">
-          <Form noValidate onSubmit={handleSubmit(onsubmit)}>
+          <Form noValidate onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-2">
               <Form.Text className="fw-bold">Nombre Usuario</Form.Text>
               <Form.Control
