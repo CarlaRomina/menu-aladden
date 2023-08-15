@@ -15,12 +15,13 @@ const Login = ({ setUsuarioLogueado }) => {
 
   const onSubmit = (usuario) => {
     login(usuario).then((respuesta) => {
-      if (respuesta) {
-        sessionStorage.setItem("usuario", JSON.stringify(respuesta));
+      console.log(respuesta);
+      if (respuesta && respuesta.status === 200) {
+        sessionStorage.setItem("usuario", JSON.stringify(respuesta.nombreUsuario));
         Swal.fire("Bienvenido", `${respuesta.nombreUsuario} iniciaste sesión correctamente`, "success");
         setUsuarioLogueado(respuesta);
         //redireccionar
-        navegacion("/administrador");
+        navegacion("/");
       } else {
         Swal.fire("Error", "Email o password incorrecto ", "error");
       }

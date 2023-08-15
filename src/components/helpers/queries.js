@@ -25,18 +25,13 @@ export const login = async (usuario) => {
       },
       body: JSON.stringify(usuario)
     });
-    if(respuesta.status === 401){
-      Swal.fire("ERROR",`${respuesta.mensaje}`,"error");
-      return null;
-    }else if(respuesta.status === 404){
-      Swal.fire("ERROR",`${respuesta.mensaje}`,"error");
-      return null;
-    }else{
-      return respuesta;
-    }
+      const datos = await respuesta.json();
+      return{
+        status: respuesta.status,
+        nombreUsuario: datos.nombreUsuario
+      }
   } catch (error) {
     return null;
-    Swal.fire("ERROR",`${respuesta.mensaje}`,"error");
   }
 };
 
