@@ -18,23 +18,25 @@ export const crearUsuario = async (usuario) => {
 
 export const login = async (usuario) => {
   try {
-    const respuesta = await fetch(URLUsuario);
-    const listaUsuarios = await respuesta.json();
-    const usuarioBuscado = listaUsuarios.find((itemUsuario) => itemUsuario.email === usuario.email);
-    if (usuarioBuscado) {
-      console.log("email encontrado");
-      if (usuarioBuscado.password === usuario.password) {
-        return usuarioBuscado;
-      } else {
-        console.log("el password es incorrecto");
-        return null;
-      }
-    } else {
-      console.log("el email no existe");
+    const respuesta = await fetch(`${URLUsuario}/`,{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(usuario)
+    });
+    if(respuesta.status === 401){
+      Swal.fire("ERROR",`${respuesta.mensaje}`,"error");
       return null;
+    }else if(respuesta.status === 404){
+      Swal.fire("ERROR",`${respuesta.mensaje}`,"error");
+      return null;
+    }else{
+      return respuesta;
     }
   } catch (error) {
-    console.log(error);
+    return null;
+    Swal.fire("ERROR",`${respuesta.mensaje}`,"error");
   }
 };
 
