@@ -1,6 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { crearUsuario } from "../helpers/queries";
+import swal from "sweetalert2";
 
 const Registro = () => {
   const {
@@ -10,16 +11,19 @@ const Registro = () => {
     reset,
     watch,
   } = useForm();
-  const onSubmit = (data) =>{
-    const { email, password} = data
+  const onSubmit = (data) => {
+    const { email, password } = data;
     data.perfil = "usuario";
     data.estado = "activo";
     crearUsuario(data).then((respuesta) => {
-      if(respuesta.status === 201){
-        localStorage.setItem("usuarioInicioSesion", JSON.stringify(respuesta));
+      if (respuesta.status === 201) {
+        localStorage.setItem("usuario", JSON.stringify(respuesta));
+        swal.fire("Registro con exito", "Inicía sesion", "success");
         reset();
-      }else {
-        Swal.fire(`Ocurrió un error`, `Intente nuevamente más tarde`, `error`);
+      } else if (respuesta.status === 401) {
+        swal.fire("Ocurrió un error", "Ya existe un usuario con este correo", "error");
+      } else {
+        swal.fire("Ocurrió un error", "Intente nuevamente más tarde", "error");
       }
     });
   };
