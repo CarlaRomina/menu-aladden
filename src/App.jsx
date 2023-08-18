@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}></Route>
         <Route exact path="/detalle/:id" element={<DetalleMenu></DetalleMenu>}></Route>
         <Route exact path="/administrador/*" element={
-          <RutasProtegidas>
+          <RutasProtegidas usuario={usuarioLogueado}>
             <RutasAdministrador/>
           </RutasProtegidas>
         }></Route>  
