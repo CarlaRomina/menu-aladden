@@ -38,7 +38,7 @@ const Registro = () => {
               <Form.Control
                 type="text"
                 placeholder="Ej: Emanuel"
-                maxLength={20}
+                maxLength={30}
                 {...register("nombreUsuario", {
                   required: "El nombre de usario es obligatorio",
                   minLength: {
@@ -46,8 +46,8 @@ const Registro = () => {
                     message: "Canntidad mínima de caracteres: 5",
                   },
                   maxLength: {
-                    value: 20,
-                    message: "Cantidad máxima de caracteres: 20",
+                    value: 30,
+                    message: "Cantidad máxima de caracteres: 30",
                   },
                 })}
               />
