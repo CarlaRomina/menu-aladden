@@ -28,7 +28,7 @@ export const login = async (usuario) => {
       const datos = await respuesta.json();
       return{
         status: respuesta.status,
-        nombreUsuario: datos.nombreUsuario
+        usuario: datos.usuario
       }
   } catch (error) {
     return null;

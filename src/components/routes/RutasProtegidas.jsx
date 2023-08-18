@@ -4,7 +4,7 @@ const RutasProtegidas = ({children}) => {
  const usuarioLogueado = JSON.parse(sessionStorage.getItem('usuario')) || null;
  //preguntar si el usuario NO esta logueado
  if(!usuarioLogueado){
-    return <Navigate to={'/login'}></Navigate>
+    return <Navigate to={'/'}></Navigate>
  }else{
     return children;
  }

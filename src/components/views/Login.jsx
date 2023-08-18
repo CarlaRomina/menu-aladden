@@ -12,14 +12,13 @@ const Login = ({ setUsuarioLogueado }) => {
     reset,
   } = useForm();
   const navegacion = useNavigate();
-
   const onSubmit = (usuario) => {
     login(usuario).then((respuesta) => {
       console.log(respuesta);
       if (respuesta && respuesta.status === 200) {
-        sessionStorage.setItem("usuario", JSON.stringify(respuesta.nombreUsuario));
-        Swal.fire("Bienvenido", `${respuesta.nombreUsuario} iniciaste sesión correctamente`, "success");
-        setUsuarioLogueado(respuesta);
+        sessionStorage.setItem("usuario", JSON.stringify(respuesta.usuario));
+        Swal.fire("Bienvenido", `${respuesta.usuario.nombreUsuario} iniciaste sesión correctamente`, "success");
+        setUsuarioLogueado(respuesta.usuario);
         //redireccionar
         navegacion("/");
       } else {
