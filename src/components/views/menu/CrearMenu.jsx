@@ -77,9 +77,13 @@ const CrearMenu = () => {
           <Form.Label>Imagen URL</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
+            placeholder="Ej: https://ejemplo.com/imagen_falafel.jpg"
             {...register("imagen", {
               required: "La imagen es obligatoria",
+              pattern:{
+                value: /^(http(s?):)([/|.|\w|\s|-])*\.(?:png|jpe?g|svg)$/,
+                message: "La imagen debe tener una url valida, terminada en (png/jpg/jpeg/svg)"
+              }
             })}
           />
           <Form.Text className="text-danger">
