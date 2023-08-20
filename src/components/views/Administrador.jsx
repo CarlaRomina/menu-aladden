@@ -28,9 +28,10 @@ const Administrador = () => {
         <Table responsive striped bordered hover>
           <thead>
             <tr>
-              <th>Cod</th>
+              <th>Posicion</th>
               <th>Producto</th>
               <th>Precio</th>
+              <th>Detalle</th>
               <th>URL de Imagen</th>
               <th>Categoria</th>
               <th>Opciones</th>
@@ -38,7 +39,7 @@ const Administrador = () => {
           </thead>
           <tbody>
             {
-              menu.map((menu)=> <ItemMenu key={menu.id} menu={menu} setMenu={setMenu}></ItemMenu>)
+              menu.map((menu ,index)=> <ItemMenu key={menu.id} posicion={index} menu={menu} setMenu={setMenu}></ItemMenu>)
             }
           </tbody>
         </Table>
