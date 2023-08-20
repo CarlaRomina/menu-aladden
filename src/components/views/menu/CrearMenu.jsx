@@ -56,11 +56,11 @@ const CrearMenu = () => {
           <Form.Label>Precio</Form.Label>
           <Form.Control
             type="number"
-            placeholder="Ej: 4"
+            placeholder="Ej: 400"
             {...register("precio", {
               required: "El precio del menú es obligatorio",
               min: {
-                value: 3,
+                value: 300,
                 message: "El precio minimo es de $300",
               },
               max: {
@@ -70,7 +70,7 @@ const CrearMenu = () => {
             })}
           />
           <Form.Text className="text-danger">
-            {errors.porciones?.message}
+            {errors.precio?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formImagen">
