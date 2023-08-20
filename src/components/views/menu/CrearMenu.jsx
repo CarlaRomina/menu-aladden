@@ -14,9 +14,8 @@ const CrearMenu = () => {
 
   const onSubmit = (menuNuevo) => {
     consultaAgregarMenu(menuNuevo).then((respuestaCreated)=>{
-      console.log(respuestaCreated)
       if(respuestaCreated && respuestaCreated.status === 201){
-        Swal.fire('Menú creado', `El menú ${menuNuevo.nombreMenu} fue creado correctamente`, 'success');
+        Swal.fire('Producto creado', `El producto ${menuNuevo.nombreMenu} fue creado correctamente`, 'success');
         reset();
       }else{
         Swal.fire('Ocurrio un error', `El menú ${menuNuevo.nombreMenu} no fue creado, intentelo mas tarde`, 'error');
@@ -31,25 +30,26 @@ const CrearMenu = () => {
       <h1 className="display-4 mt-5">Nuevo menú</h1>
       <hr />
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="formNombreMenu">
+        <Form.Group className="mb-3" controlId="formNombrePlato">
           <Form.Label>Menú</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ej: Arroz Persa"
-            {...register("nombreMenu", {
-              required: "El nombre del menú es obligatorio",
+            maxLength={50}
+            {...register("nombrePlato", {
+              required: "El nombre del plato es obligatorio",
               minLength: {
                 value: 2,
                 message: "La cantidad minima de caracteres es de 2 digitos",
               },
               maxLength: {
-                value: 100,
-                message: "La cantidad máxima de caracteres es de 100 digitos",
+                value: 50,
+                message: "La cantidad máxima de caracteres es de 50 digitos",
               },
             })}
           />
           <Form.Text className="text-danger">
-            {errors.nombreMenu?.message}
+            {errors.nombrePlato?.message}
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPrecio">
