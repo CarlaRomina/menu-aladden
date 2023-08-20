@@ -1,8 +1,7 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, FormGroup, FormControl } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { consultaAgregarMenu } from "../../helpers/queries";
 import Swal from "sweetalert2";
-
 
 const CrearMenu = () => {
   const {
@@ -13,18 +12,16 @@ const CrearMenu = () => {
   } = useForm();
 
   const onSubmit = (menuNuevo) => {
-    consultaAgregarMenu(menuNuevo).then((respuestaCreated)=>{
-      if(respuestaCreated && respuestaCreated.status === 201){
-        Swal.fire('Producto creado', `El producto ${menuNuevo.nombreMenu} fue creado correctamente`, 'success');
+    consultaAgregarMenu(menuNuevo).then((respuestaCreated) => {
+      if (respuestaCreated && respuestaCreated.status === 201) {
+        Swal.fire("Producto creado", `El producto ${menuNuevo.nombreMenu} fue creado correctamente`, "success");
         reset();
-      }else{
-        Swal.fire('Ocurrio un error', `El menú ${menuNuevo.nombreMenu} no fue creado, intentelo mas tarde`, 'error');
+      } else {
+        Swal.fire("Ocurrio un error", `El menú ${menuNuevo.nombreMenu} no fue creado, intentelo mas tarde`, "error");
       }
-    })
-   
+    });
   };
 
-  
   return (
     <section className="container mainSection">
       <h1 className="display-4 mt-5">Nuevo menú</h1>
@@ -48,9 +45,29 @@ const CrearMenu = () => {
               },
             })}
           />
-          <Form.Text className="text-danger">
-            {errors.nombrePlato?.message}
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.nombrePlato?.message}</Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formDescripcionPlato">
+          <Form.Label>Descripcion</Form.Label>
+          <Form.Control
+            type="text"
+            as="textarea"
+            rows={4}
+            maxLength={500}
+            placeholder="Ingrese una descripción para dar más detalles sobre el producto..."
+            {...register("descripcion", {
+              required: "Debe ingresar una descripción del producto",
+              minLength: {
+                value: 10,
+                message: "Cantidad mínima de caracteres: 10",
+              },
+              maxLength: {
+                value: 500,
+                message: "Cantidad máxima de caracteres: 500",
+              },
+            })}
+          ></Form.Control>
+          <Form.Text className="text-danger">{errors.descripcion?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Precio</Form.Label>
@@ -69,9 +86,7 @@ const CrearMenu = () => {
               },
             })}
           />
-          <Form.Text className="text-danger">
-            {errors.precio?.message}
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.precio?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formImagen">
           <Form.Label>Imagen URL</Form.Label>
@@ -80,15 +95,13 @@ const CrearMenu = () => {
             placeholder="Ej: https://ejemplo.com/imagen_falafel.jpg"
             {...register("imagen", {
               required: "La imagen es obligatoria",
-              pattern:{
+              pattern: {
                 value: /^(http(s?):)([/|.|\w|\s|-])*\.(?:png|jpe?g|svg)$/,
-                message: "La imagen debe tener una url valida, terminada en (png/jpg/jpeg/svg)"
-              }
+                message: "La imagen debe tener una url valida, terminada en (png/jpg/jpeg/svg)",
+              },
             })}
           />
-          <Form.Text className="text-danger">
-            {errors.imagen?.message}
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.imagen?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Categoria</Form.Label>
@@ -103,10 +116,7 @@ const CrearMenu = () => {
             <option value="sin tacc">Sin tacc</option>
             <option value="postres">Postres</option>
           </Form.Select>
-          <Form.Text className="text-danger">
-            {errors.categoria?.message}
-            
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.categoria?.message}</Form.Text>
         </Form.Group>
         <Button variant="primary" type="submit">
           Guardar
