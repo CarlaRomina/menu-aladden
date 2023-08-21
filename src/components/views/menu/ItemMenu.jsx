@@ -4,7 +4,7 @@ import { consultaBorrarMenu, consultaListaMenu } from "../../helpers/queries";
 import { Link } from "react-router-dom";
 import MenuP from "../../common/MenuP";
 
-const ItemMenu = ({menu,setMenu}) => {
+const ItemMenu = ({posicion,menu,setMenu}) => {
 
   const borrarMenu = ()=>{
     Swal.fire({
@@ -43,13 +43,13 @@ const ItemMenu = ({menu,setMenu}) => {
   }
 
    return (
-    <tr>
-      
-      <td>{menu.id}</td>
-      <td>{menu.nombreMenu}</td>
-      <td>{menu.precio}</td>
+    <tr>   
+      <td>{posicion+1}</td>
+      <td>{menu.nombreProducto}</td>
+      <td>${menu.precio}</td>
+      <td>{menu.detalle}</td>
       <td>{menu.imagen}</td>
-      <td>{menu.categoria}</td>
+      <td>{menu.categoría}</td>
       <td>
         <Link className="btn btn-warning" to={'/adminastrador/editar-menu/'+ menu.id}>Editar</Link>
         <Button variant="danger" onClick={borrarMenu}>

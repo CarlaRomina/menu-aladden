@@ -80,9 +80,13 @@ export const consultaAgregarMenu = async (menu) => {
       },
       body: JSON.stringify(menu),
     });
-    return respuesta;
+    const propiedades = await respuesta.json();
+      return{
+        status: respuesta.status,
+        producto: propiedades.menu
+      }
   } catch (error) {
-    console.log(error);
+    return null;
   }
 };
 export const consultaEditarMenu = async (menu, id) => {

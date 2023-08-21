@@ -1,8 +1,7 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, FormGroup, FormControl } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { consultaAgregarMenu } from "../../helpers/queries";
 import Swal from "sweetalert2";
-
 
 const CrearMenu = () => {
   const {
@@ -13,54 +12,73 @@ const CrearMenu = () => {
   } = useForm();
 
   const onSubmit = (menuNuevo) => {
-    consultaAgregarMenu(menuNuevo).then((respuestaCreated)=>{
-      console.log(respuestaCreated)
-      if(respuestaCreated && respuestaCreated.status === 201){
-        Swal.fire('Menú creado', `El menú ${menuNuevo.nombreMenu} fue creado correctamente`, 'success');
+    consultaAgregarMenu(menuNuevo).then((respuestaCreated) => {
+      if (respuestaCreated && respuestaCreated.status === 201) {
+        Swal.fire("Producto creado", `El producto ${menuNuevo.nombreMenu} fue creado correctamente`, "success");
         reset();
-      }else{
-        Swal.fire('Ocurrio un error', `El menú ${menuNuevo.nombreMenu} no fue creado, intentelo mas tarde`, 'error');
+      } else {
+        Swal.fire("Ocurrio un error", `El menú ${menuNuevo.nombreMenu} no fue creado, intentelo mas tarde`, "error");
       }
-    })
-   
+    });
   };
 
-  
   return (
     <section className="container mainSection">
       <h1 className="display-4 mt-5">Nuevo menú</h1>
       <hr />
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="formNombreMenu">
+        <Form.Group className="mb-3" controlId="formNombrePlato">
           <Form.Label>Menú</Form.Label>
           <Form.Control
             type="text"
             placeholder="Ej: Arroz Persa"
-            {...register("nombreMenu", {
-              required: "El nombre del menú es obligatorio",
+            maxLength={50}
+            {...register("nombrePlato", {
+              required: "El nombre del plato es obligatorio",
               minLength: {
                 value: 2,
                 message: "La cantidad minima de caracteres es de 2 digitos",
               },
               maxLength: {
-                value: 100,
-                message: "La cantidad máxima de caracteres es de 100 digitos",
+                value: 50,
+                message: "La cantidad máxima de caracteres es de 50 digitos",
               },
             })}
           />
-          <Form.Text className="text-danger">
-            {errors.nombreMenu?.message}
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.nombrePlato?.message}</Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formDescripcionPlato">
+          <Form.Label>Descripcion</Form.Label>
+          <Form.Control
+            type="text"
+            as="textarea"
+            rows={4}
+            maxLength={500}
+            placeholder="Ingrese una descripción para dar más detalles sobre el producto..."
+            {...register("descripcion", {
+              required: "Debe ingresar una descripción del producto",
+              minLength: {
+                value: 10,
+                message: "Cantidad mínima de caracteres: 10",
+              },
+              maxLength: {
+                value: 500,
+                message: "Cantidad máxima de caracteres: 500",
+              },
+            })}
+          ></Form.Control>
+          <Form.Text className="text-danger">{errors.descripcion?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Precio</Form.Label>
           <Form.Control
             type="number"
-            placeholder="Ej: 4"
+            inputMode="numeric"
+            placeholder="Ej: 400"
             {...register("precio", {
               required: "El precio del menú es obligatorio",
               min: {
-                value: 3,
+                value: 300,
                 message: "El precio minimo es de $300",
               },
               max: {
@@ -69,22 +87,22 @@ const CrearMenu = () => {
               },
             })}
           />
-          <Form.Text className="text-danger">
-            {errors.porciones?.message}
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.precio?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formImagen">
           <Form.Label>Imagen URL</Form.Label>
-          <Form.Control
+          <Form.Control 
             type="text"
-            placeholder="Ej: https://www.pexels.com/es-es/vans-en-blanco-y-negro-fuera-de-la-decoracion-para-colgar-en-la-pared-1230679/"
+            placeholder="Ej: https://ejemplo.com/imagen_falafel.jpg"
             {...register("imagen", {
               required: "La imagen es obligatoria",
+              pattern: {
+                value: /^(http(s?):)([/|.|\w|\s|-])*\.(?:png|jpe?g|svg)$/,
+                message: "La imagen debe tener una url valida, terminada en (png/jpg/jpeg/svg)",
+              },
             })}
           />
-          <Form.Text className="text-danger">
-            {errors.imagen?.message}
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.imagen?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Categoria</Form.Label>
@@ -99,10 +117,19 @@ const CrearMenu = () => {
             <option value="sin tacc">Sin tacc</option>
             <option value="postres">Postres</option>
           </Form.Select>
-          <Form.Text className="text-danger">
-            {errors.categoria?.message}
-            
-          </Form.Text>
+          <Form.Text className="text-danger">{errors.categoria?.message}</Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Estado</Form.Label>
+          <Form.Group className="d-flex"
+          {...register("estado",{
+            required: "El estado es obligatoria"
+          })}>
+            <Form.Check disabled type="checkbox" value="disponible" defaultChecked /> Disponible
+            <Form.Check disabled type="checkbox" value="agotado" /> Agotado
+            <Form.Check disabled type="checkbox" value="oferta" /> Oferta
+            <Form.Check disabled type="checkbox" value="descatalogado" /> Descatalogado
+          </Form.Group>
         </Form.Group>
         <Button variant="primary" type="submit">
           Guardar
