@@ -73,6 +73,7 @@ const CrearMenu = () => {
           <Form.Label>Precio</Form.Label>
           <Form.Control
             type="number"
+            inputMode="numeric"
             placeholder="Ej: 400"
             {...register("precio", {
               required: "El precio del menú es obligatorio",
@@ -90,7 +91,7 @@ const CrearMenu = () => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formImagen">
           <Form.Label>Imagen URL</Form.Label>
-          <Form.Control
+          <Form.Control 
             type="text"
             placeholder="Ej: https://ejemplo.com/imagen_falafel.jpg"
             {...register("imagen", {
@@ -117,6 +118,18 @@ const CrearMenu = () => {
             <option value="postres">Postres</option>
           </Form.Select>
           <Form.Text className="text-danger">{errors.categoria?.message}</Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Estado</Form.Label>
+          <Form.Group className="d-flex"
+          {...register("estado",{
+            required: "El estado es obligatoria"
+          })}>
+            <Form.Check disabled type="checkbox" value="disponible" defaultChecked /> Disponible
+            <Form.Check disabled type="checkbox" value="agotado" /> Agotado
+            <Form.Check disabled type="checkbox" value="oferta" /> Oferta
+            <Form.Check disabled type="checkbox" value="descatalogado" /> Descatalogado
+          </Form.Group>
         </Form.Group>
         <Button variant="primary" type="submit">
           Guardar
