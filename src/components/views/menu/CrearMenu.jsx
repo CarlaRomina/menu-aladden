@@ -1,4 +1,4 @@
-import { Form, Button, FormGroup, FormControl } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { consultaAgregarMenu } from "../../helpers/queries";
 import Swal from "sweetalert2";
@@ -12,12 +12,13 @@ const CrearMenu = () => {
   } = useForm();
 
   const onSubmit = (menuNuevo) => {
-    consultaAgregarMenu(menuNuevo).then((respuestaCreated) => {
-      if (respuestaCreated && respuestaCreated.status === 201) {
-        Swal.fire("Producto creado", `El producto ${menuNuevo.nombreMenu} fue creado correctamente`, "success");
+    consultaAgregarMenu(menuNuevo).then((respuesta) => {
+      console.log(menuNuevo);
+      if (respuesta && respuesta.status === 201) {
+        Swal.fire("Producto creado", `El producto ${menuNuevo.nombreProducto} fue creado correctamente`, "success");
         reset();
       } else {
-        Swal.fire("Ocurrio un error", `El menú ${menuNuevo.nombreMenu} no fue creado, intentelo mas tarde`, "error");
+        Swal.fire("Ocurrio un error", `El menú ${menuNuevo.nombreProducto} no fue creado, intentelo mas tarde`, "error");
       }
     });
   };
@@ -33,7 +34,7 @@ const CrearMenu = () => {
             type="text"
             placeholder="Ej: Arroz Persa"
             maxLength={50}
-            {...register("nombrePlato", {
+            {...register("nombreProducto", {
               required: "El nombre del plato es obligatorio",
               minLength: {
                 value: 2,
@@ -45,7 +46,7 @@ const CrearMenu = () => {
               },
             })}
           />
-          <Form.Text className="text-danger">{errors.nombrePlato?.message}</Form.Text>
+          <Form.Text className="text-danger">{errors.nombreProducto?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formDescripcionPlato">
           <Form.Label>Descripcion</Form.Label>
@@ -55,7 +56,7 @@ const CrearMenu = () => {
             rows={4}
             maxLength={500}
             placeholder="Ingrese una descripción para dar más detalles sobre el producto..."
-            {...register("descripcion", {
+            {...register("detalle", {
               required: "Debe ingresar una descripción del producto",
               minLength: {
                 value: 10,
@@ -67,7 +68,7 @@ const CrearMenu = () => {
               },
             })}
           ></Form.Control>
-          <Form.Text className="text-danger">{errors.descripcion?.message}</Form.Text>
+          <Form.Text className="text-danger">{errors.detalle?.message}</Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formPrecio">
           <Form.Label>Precio</Form.Label>
@@ -104,10 +105,10 @@ const CrearMenu = () => {
           />
           <Form.Text className="text-danger">{errors.imagen?.message}</Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formPrecio">
+        <Form.Group className="mb-3" controlId="formCategoria">
           <Form.Label>Categoria</Form.Label>
           <Form.Select
-            {...register("categoria", {
+            {...register("categoría", {
               required: "La categoria es obligatoria",
             })}
           >
@@ -117,19 +118,22 @@ const CrearMenu = () => {
             <option value="sin tacc">Sin tacc</option>
             <option value="postres">Postres</option>
           </Form.Select>
-          <Form.Text className="text-danger">{errors.categoria?.message}</Form.Text>
+          <Form.Text className="text-danger">{errors.categoría?.message}</Form.Text>
         </Form.Group>
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" controlId="formEstado">
           <Form.Label>Estado</Form.Label>
-          <Form.Group className="d-flex"
-          {...register("estado",{
-            required: "El estado es obligatoria"
-          })}>
-            <Form.Check disabled type="checkbox" value="disponible" defaultChecked /> Disponible
-            <Form.Check disabled type="checkbox" value="agotado" /> Agotado
-            <Form.Check disabled type="checkbox" value="oferta" /> Oferta
-            <Form.Check disabled type="checkbox" value="descatalogado" /> Descatalogado
-          </Form.Group>
+          <Form.Select
+            {...register("estado", {
+              required: "El estado es obligatoria",
+            })}
+          >
+            <option value="">Seleccione una opcion</option>
+            <option value="disponible" > Disponible</option>
+            <option value="agotado" > Agotado</option>
+            <option value="oferta" > Oferta</option>
+            <option value="descatalogado" > Descatalogado</option>
+          </Form.Select>
+          <Form.Text className="text-danger">{errors.estado?.message}</Form.Text>
         </Form.Group>
         <Button variant="primary" type="submit">
           Guardar
