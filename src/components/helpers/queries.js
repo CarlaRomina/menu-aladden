@@ -80,11 +80,7 @@ export const consultaAgregarMenu = async (menu) => {
       },
       body: JSON.stringify(menu),
     });
-    const propiedades = await respuesta.json();
-      return{
-        status: respuesta.status,
-        producto: propiedades.menu
-      }
+    return respuesta;
   } catch (error) {
     return null;
   }
