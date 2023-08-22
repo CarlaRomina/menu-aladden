@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import MenuP from "../../common/MenuP";
 
 const ItemMenu = ({posicion,menu,setMenu}) => {
-
   const borrarMenu = ()=>{
     Swal.fire({
-      title: `¿Esta seguro de borrar el menú ${menu.nombreMenu}?`,
+      title: `¿Esta seguro de borrar el menú ${menu.nombreProducto}?`,
       text: "No se puede revertir este paso",
       icon: 'warning',
       showCancelButton: true,
@@ -17,14 +16,13 @@ const ItemMenu = ({posicion,menu,setMenu}) => {
       confirmButtonText: 'Borrar',
       cancelButtonText: 'Cancelar',
     }).then((result) => {
-      if (result.isConfirmed) {
-        
-        consultaBorrarMenu(menu.id).then((respuesta)=>{
+      if (result.isConfirmed) {   
+        consultaBorrarMenu(menu._id).then((respuesta)=>{
           console.log(respuesta);
           if(respuesta.status === 200){
             Swal.fire(
               'Menú eliminado',
-              `El ${menu.nombreMenu} fue eliminado correctamente`,
+              `El ${menu.nombreProducto} fue eliminado correctamente`,
               'success'
             );
             
@@ -33,7 +31,7 @@ const ItemMenu = ({posicion,menu,setMenu}) => {
             Swal.fire(
               'Ocurrio un error',
               `Intente realizar esta operación nuevamente mas tarde`,
-              'success'
+              'error'
             )
           }
         })
