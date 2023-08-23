@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/detalle/:id" element={<DetalleMenu></DetalleMenu>}></Route>
         <Route exact path="/administrador/*" element={
           <RutasProtegidas usuario={usuarioLogueado}>
-            <RutasAdministrador/>
+            <RutasAdministrador></RutasAdministrador>
           </RutasProtegidas>
         }></Route>  
         {/* <Route path="*" element={<Error404></Error404>}></Route> */}

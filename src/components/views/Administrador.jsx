@@ -39,7 +39,7 @@ const Administrador = () => {
           </thead>
           <tbody>
             {
-              menu.map((menu ,index)=> <ItemMenu key={menu.id} posicion={index} menu={menu} setMenu={setMenu}></ItemMenu>)
+              menu.map((menu ,index)=> <ItemMenu key={menu._id} posicion={index} menu={menu} setMenu={setMenu}></ItemMenu>)
             }
           </tbody>
         </Table>
