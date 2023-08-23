@@ -15,16 +15,16 @@ const EditarMenu = () => {
   } = useForm();
   const {id} = useParams();
   const navegacion = useNavigate()
-
   useEffect(()=>{
     consultaMenu(id).then((respuesta)=>{
       if(respuesta){
         console.log('tengo que cargar el objeto en el formulario')
         console.log(respuesta);
-        setValue('nombreMenu', respuesta.nombreMenu);
+        setValue('nombreProducto', respuesta.nombreMenu);
         setValue('precio', respuesta.precio);
         setValue('imagen', respuesta.imagen);
-        setValue('categoria', respuesta.categoria);
+        setValue('categoría', respuesta.categoria);
+        setValue('estado',respuesta.estado);
       }else{
         Swal.fire('Ocurrio un error', `No se puede editar el menú, intentelo mas tarde`, 'error');
       }
